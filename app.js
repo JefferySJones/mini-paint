@@ -89,4 +89,15 @@ $(document).ready(function () {
     $('#white').on('click', function () {
         color = 'white';
     });
+
+    $('#custom').on('click', function () {
+        color = $('input').val();
+        $('.custom').css('background', color);
+    });
+    $('input').keypress(function () {
+        setTimeout(function () {
+            color = $('input').val();
+            $('.custom').css('background', color);
+        }, 100);
+    });
 });
