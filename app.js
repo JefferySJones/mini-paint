@@ -8,14 +8,6 @@ $(document).ready(function () {
 	var colors = 'white green red blue yellow'; //used for removing classes
 	var color = 'white'; //default color white
 
-	//Give unique id's to the boxes
-	$(".box").each(function (i) {
-		// Store an id with format "uniqueId_{index}" in a variable.
-		var id = "uniqueId_" + i;
-		// Give the ID to the div
-		$(this).attr("id", id);
-	});
-
 	var undoArr = [];
 	
 	//store a history in the undoArr
@@ -26,7 +18,7 @@ $(document).ready(function () {
 		}
 		console.log('added pixel');
 		var arr = [];
-		arr.push($(this).attr('id'));
+		arr.push(this);
 		arr.push($(this).attr('class'));
 		undoArr.push(arr);
 		console.log(arr);
@@ -45,7 +37,7 @@ $(document).ready(function () {
 	//undo button
 	$('#undo').on('click', function () {
 		if (undoArr.length) {
-			var element = "#" + undoArr[undoArr.length - 1][0].toString();
+			var element = undoArr[undoArr.length -1][0]; //Attempting to use the object itself instead of id
 			var elementLastColor = undoArr[undoArr.length - 1][1];
 			console.log(element);
 			console.log(elementLastColor);
