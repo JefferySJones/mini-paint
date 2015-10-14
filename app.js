@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	
+
 	console.log('I\'m READY!');
 	console.log('I\'m READY!');
 	console.log('I\'m READY!');
@@ -9,40 +9,76 @@ $(document).ready(function () {
 	var color = 'white'; //default color white
 
 	var undoArr = [];
-	
-	//store a history in the undoArr
-	$('.box').on('click', function () {
-		if (undoArr.length > 10) {
+
+	function logHistory() {
+		if (undoArr.length > 40) {
 			undoArr.shift();
 			console.log('YOUR HISTORY IS GETTING TOO LONG! BALETED!')
 		}
 		console.log('added pixel');
 		var arr = [];
-		arr.push(this);
-		arr.push($(this).attr('class'));
+		arr.push($(this));
+		arr.push($(this).css('background-color'));
 		undoArr.push(arr);
 		console.log(arr);
-	});
+
+		draw();
+	}
+	
+	//store a history in the undoArr
+	$('.box').on('click', logHistory);
+
+	var drawing = false;
 	
 	//color
-	$('.box').on('click', function () {
-		$(this).addClass(color);
+	$('.box').on('mousedown', function () {
+		drawing = true;
 	});
+
+	$('.box').on('mouseup', function () {
+		drawing = false;
+	});
+
+	$('.box').on('click', function () {
+		$(this).css('background-color', color);
+	});
+
+	function draw() {
+		if (drawing) {
+			//$(this).addClass(color);
+			
+			if ($(this).css('background-color') !== color) {
+				if (undoArr.length > 40) {
+					undoArr.shift();
+					console.log('YOUR HISTORY IS GETTING TOO LONG! BALETED!')
+				}
+				console.log('added pixel');
+				var arr = [];
+				arr.push($(this));
+				arr.push($(this).css('background-color'));
+				undoArr.push(arr);
+				console.log(arr);
+			}
+			
+			$(this).css('background-color', color);
+		}
+	}
+
+	$('.box').on('mouseover', draw);
 	
 	//dblclick erase
 	$('.box').on('dblclick', function () {
-		$(this).removeClass(colors);
+		$(this).css('background-color', '#000000');
 	});
 	
 	//undo button
 	$('#undo').on('click', function () {
 		if (undoArr.length) {
-			var element = undoArr[undoArr.length -1][0]; //Attempting to use the object itself instead of id
-			var elementLastColor = undoArr[undoArr.length - 1][1];
+			var element = undoArr[undoArr.length - 1][0]; //Attempting to use the object itself instead of id
+			var elementLastColor = undoArr[undoArr.length - 1][1].toString();
 			console.log(element);
 			console.log(elementLastColor);
-			$(element).removeClass(colors);
-			$(element).addClass(elementLastColor);
+			$(element).css('background-color', elementLastColor);
 			undoArr.pop();
 		} else {
 			console.log('NOTHING TO UNDO');
@@ -51,31 +87,27 @@ $(document).ready(function () {
 	
 	//reset button
 	$('#reset').on('click', function () {
-		$('.box').removeClass(colors);
+		//$('.box').removeClass(colors);
+		$('.box').css('background-color', '#000000');
 	});
 
 	$('#red').on('click', function () {
-		$(this).removeClass(colors);
 		color = 'red';
 	});
 
 	$('#blue').on('click', function () {
-		$(this).removeClass(colors);
 		color = 'blue';
 	});
 
 	$('#green').on('click', function () {
-		$(this).removeClass(colors);
 		color = 'green';
 	});
 
 	$('#yellow').on('click', function () {
-		$(this).removeClass(colors);
 		color = 'yellow';
 	});
 
 	$('#white').on('click', function () {
-		$(this).removeClass(colors);
 		color = 'white';
 	});
 });

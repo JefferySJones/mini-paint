@@ -20,7 +20,7 @@ div {
 div div {
     width: 1%;
     height: 2%;
-    outline: 1px solid #fff;
+    outline: 0px solid #fff;
     float: left;
     background: black;
 }
