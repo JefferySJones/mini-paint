@@ -1,29 +1,25 @@
 body {
-  font-family: 'Press Start 2P', cursive;
-  -webkit-user-select: none; /* Chrome/Safari */        
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+ */
+    font-family:'Press Start 2P', cursive;
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
 
-  /* Rules below not implemented in browsers yet */
-  -o-user-select: none;
-  user-select: none;
+    /* Rules below not implemented in browsers yet */
+    -o-user-select: none;
+    user-select: none;
 }
-
 a {
-  text-decoration: none;
-  color: black;
+    text-decoration: none;
+    color: black;
 }
-
 hr {
-  color: #fff;
-  border: none;
+    color: #fff;
+    border: none;
 }
-
 div {
     width: 100%;
     height: 600px;
 }
-
 div div {
     width: 1%;
     height: 1%;
@@ -31,67 +27,29 @@ div div {
     float: left;
     background: black;
 }
-
 .white {
-  background: #fff;
+    background: #fff;
 }
-
 .red {
-  background: red;
+    background: red;
 }
-
 .green {
-  background: green;
+    background: green;
 }
-
 .blue {
-  background: blue;
+    background: blue;
 }
-
 .yellow {
-  background: yellow;
+    background: yellow;
 }
-
-.pallette-white {
-  background: white;
-  height: 2%;
-  width: 1%;
-  padding: 10px;
-  border: 1px solid black;
+.black {
+    background: black;
+    color: white;
 }
-
-.pallette-black {
-  background: black;
-  color: white;
-  height: 2%;
-  width: 1%;
-  padding: 10px;
-}
-
-.pallette-red {
-  background: red;
-  height: 2%;
-  width: 1%;
-  padding: 10px
-}
-
-.pallette-green {
-  background: green;
-  height: 2%;
-  width: 1%;
-  padding: 10px;
-}
-
-.pallette-yellow {
-  background: yellow;
-  height: 2%;
-  width: 1%;
-  padding: 10px;
-}
-
-.pallette-blue {
-  background: blue;
-  height: 2%;
-  width: 1%;
-  padding: 10px;
+.pallette {
+    height: 1em;
+    min-width: 1em;
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid black;
 }
